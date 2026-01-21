@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collaborative Canvas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1 class="title">🎨 Collaborative Canvas</h1>
+        
+        <div class="header-right">
+          <div class="connection-status" id="connectionStatus">
+            <span class="status-icon" id="statusIcon">⚫</span>
+            <span id="statusText">Connecting...</span>
+          </div>
+          
+          <div class="user-count">
+            <span class="user-icon">👥</span>
+            <span id="userCount">1</span>
+            <span>online</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-content">
+        <!-- Tools -->
+        <div class="tool-group">
+          <label>Tool:</label>
+          <button class="tool-btn active" data-tool="brush" id="brushBtn">
+            ✏️ Brush
+          </button>
+          <button class="tool-btn" data-tool="eraser" id="eraserBtn">
+            🧹 Eraser
+          </button>
+        </div>
+
+        <!-- Color -->
+        <div class="tool-group">
+          <label for="colorPicker">Color:</label>
+          <input type="color" id="colorPicker" value="#000000" class="color-picker">
+          <span id="colorValue">#000000</span>
+        </div>
+
+        <!-- Brush Size -->
+        <div class="tool-group">
+          <label for="brushSize">Size:</label>
+          <input type="range" id="brushSize" min="1" max="50" value="3" class="size-slider">
+          <span id="sizeValue">3</span>
+        </div>
+
+        <!-- Actions -->
+        <div class="tool-group actions">
+          <button class="action-btn" id="undoBtn" title="Undo (Ctrl+Z)">
+            ↶ Undo
+          </button>
+          <button class="action-btn" id="redoBtn" title="Redo (Ctrl+Shift+Z)">
+            ↷ Redo
+          </button>
+          <button class="action-btn danger" id="clearBtn" title="Clear Canvas">
+            🗑️ Clear
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Canvas Container -->
+    <div class="canvas-container">
+      <div class="canvas-wrapper">
+        <canvas id="canvas" width="1200" height="700"></canvas>
+        
+        <!-- User indicator -->
+        <div class="user-indicator" id="userIndicator">
+          <div class="user-dot"></div>
+          <span class="user-name">You</span>
+        </div>
+
+        <!-- Remote cursors -->
+        <div id="remoteCursors"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        Real-time collaborative drawing • 
+        Draw with others in real-time • 
+        Global undo/redo supported
+      </p>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="websocket.js"></script>
+  <script type="module" src="canvas.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
